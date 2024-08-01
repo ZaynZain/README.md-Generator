@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>README Generator</h1>
+        <form action="/generate" method="post" enctype="multipart/form-data">
+            <div class="field">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="field">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="field">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image">
+            </div>
+            <div class="field">
+                <label for="installation">Installation</label>
+                <textarea id="installation" name="installation"></textarea>
+            </div>
+            <div class="field">
+                <label for="usage">Usage</label>
+                <textarea id="usage" name="usage"></textarea>
+            </div>
+            <div class="field">
+                <label for="contributing">Contributing</label>
+                <textarea id="contributing" name="contributing"></textarea>
+            </div>
+            <div class="field">
+                <label for="license">License</label>
+                <textarea id="license" name="license"></textarea>
+            </div>
+            <div id="custom-fields"></div>
+            <button type="button" hx-get="/add-field" hx-target="#custom-fields" hx-swap="beforeend">Add Custom Field</button>
+            <button type="submit">Generate README.md</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
